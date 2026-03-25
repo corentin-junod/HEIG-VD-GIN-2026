@@ -13,7 +13,7 @@ Avant de commencer les exercices, assurez-vous d'avoir installé les logiciels s
 
 ## Téléchargement des slides et des exercices
 
-Pour télécharger l'entier du cours : `git clone https://github.com/corentin-junod/HEIGVD-GIO1-2026`  
+Pour télécharger l'entier du cours : `git clone https://github.com/corentin-junod/HEIG-VD-GIN-2026.git`  
 Le cours sera mis à jour au fur et à mesure du semestre, pour mettre à jour votre dépôt local : `git pull`
 
 ---
