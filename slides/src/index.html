@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>GIN - Slides</title>
+		<link rel="stylesheet" href="reveal_js/dist/reveal.css">
+		<link rel="stylesheet" href="reveal_js/dist/theme/night.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/tokyo-night-dark.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides"></div>
+		</div>
+		<script src="reveal_js/dist/reveal.js"></script>
+		<script src="reveal_js/dist/plugin/notes.js"></script>
+		<script src="reveal_js/dist/plugin/markdown.js"></script>
+		<script src="reveal_js/dist/plugin/highlight.js"></script>
+		<script>
+			window.onload = async () => {
+
+				let content = [
+					'00_00_git.html'
+				];
+
+				const file = new URLSearchParams(window.location.search).get("file");
+				if(file != undefined){
+					content = [file];
+				}
+
+				for (const file of content) {
+					const html = await (await fetch(file)).text();
+					document.querySelector('.slides').insertAdjacentHTML('beforeend', html);
+				}
+
+				const showNotes = new URLSearchParams(window.location.search).get("showNotes");
+
+				Reveal.initialize({
+					showNotes: showNotes != undefined,
+					hash: true,
+					slideNumber: true,
+					center: false,
+					plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
+					transition: 'fade',
+				});
+			};
+		</script>
+	</body>
+</html>
