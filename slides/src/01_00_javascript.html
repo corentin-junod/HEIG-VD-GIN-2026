@@ -1,0 +1,837 @@
+<section>
+	<br><br><br>
+	<h1>JavaScript</h1>
+	<h2></h2>
+	<br><br>
+	<img src="assets/js.svg" width="200px" style="margin:auto;display:flex;">
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Introduction</h4>
+	<br><br>
+	<p>
+		Le JavaScript est un langage de programmation, parmi les plus utilisés au monde
+		<ul>
+			<li>Le JavaScript est créé en 1995</li>
+			<li>La syntaxe est standardisée sous le nom d'<i>ECMAScript</i></li>
+			<li>Depuis 2015, une nouvelle version sort chaque année</li>
+			<li>Le web utilise ce language pour scripter ses pages, tous les navigateurs savent interpréter du JavaScript</li>
+		</ul>
+	</p>
+	<br>
+	<p class="info">
+		Il existe un language de programmation nommé Java, qui n'a absolument rien à voir avec JavaScript. <br>
+		Il ne faut pas les confondre
+	</p>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Ressources</h4>
+	<br><br>
+	<p>
+		De nombreux tutoriels et documentations sont disponibles sur presque tous les supports (livres, sites internet, vidéos, etc.)
+		<ul>
+			<li>
+				W3Schools : <a href="https://www.w3schools.com/js/">https://www.w3schools.com/js/</a>
+				<br>
+				Références et tutoriels facile d'accès. Excellent pour débuter 
+			</li>
+			<li>
+				MDN : <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">https://developer.mozilla.org/en-US/docs/Web/JavaScript</a>
+				<br>
+				Documentation officielle de Mozilla. Référence la plus complète et la plus précise disponible 
+			</li>
+		</ul>
+	</p>
+	<p>N'hésitez pas à chercher sur internet dès que vous avez une questions. <br><i>Savoir utiliser une documentation doit faire partie de vos compétences</i></p>
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Comment ca marche ?</h4>
+	<br><br>
+	<p>
+		Le JavaScript (plus précisément ECMAScript) est une syntaxe qui décrit des opérations à effectuer. <br>
+		Comme pour la plupart des languages des programmation, l'exécution se fait ligne par ligne.
+	</p>
+	<p>
+		L'exécution est faite par un programme spécifique, un <i>moteur JavaScript</i>, intégré au navigateur web.
+		<br><br>
+		Il existe d'autres moteurs JavaScript qui ne sont pas intégrés à un navigateur, comme <i>Node.js</i> que nous verrons plus tard.
+	</p>		
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Dans une page web</h4>
+	<br><br>
+	<p>
+		En HTML, le javascript s'écrit toujours via une balise &lt;script&gt;.
+		<br><br>
+		Il peut s'écrire directement dans la balise :
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;JavaScript&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script&gt;
+            console.log('Hello World!');
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>		
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Dans une page web</h4>
+	<br><br>
+	<p>
+		En HTML, le javascript s'écrit toujours via une balise &lt;script&gt;.
+		<br><br>
+		Ou référencer le contenu d'un fichier externe :
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;JavaScript&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script src="script.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>		
+	<p>
+		Ces deux codes sont équivalents si <i>script.js</i> contient <code>console.log('Hello World!');</code>
+	</p>
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>L'exécution</h4>
+	<br>
+	<p>
+		Le JavaScript s'exécute dans l'ordre de lecture de la page par le navigateur.<br>
+		Cela implique qu'un script ne peut accéder qu'aux éléments déjà analysés.
+		<br><br>
+		Par défaut, l'exécution du JavaScript est bloquante pour le chargement de la page. On placera généralement la balise &lt;script&gt; à la fin de la balise &lt;body&gt; pour ne pas ralentir le chargement.
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;JavaScript&lt;/title&gt;
+        &lt;script&gt;...&lt;/script&gt; -&gt; Exécuté avant le chargement du body, il ne pourra pas y accéder
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;script&gt;...&lt;/script&gt; -&gt; Exécuté après le chargement du body et avant celui du h1
+        &lt;h1&gt; Titre &lt;/h1&gt;
+        &lt;script&gt;...&lt;/script&gt; -&gt; Exécuté une fois tous les éléments chargés
+    &lt;/body&gt;
+&lt;/html&gt;
+	</code></pre>		
+
+<aside class="notes">
+	Cet ordre d'execution est également valable pour les balises de script qui incluent un fichier externe. Cela ne fait pas de différence.
+	<br><br>
+	Il existe en JavaScript des événements qui permettent d'exécuter du code à un moment donné (lorsque la page s'est chargée, lors du clic sur un bouton, quand une ressource est disponible, etc). Ces derniers permettent aussi de controller l'ordre d'exécution. Nous en verrons certains plus loins dans le cours.
+</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les variables</h4>
+	<br>
+	<p>
+		JavaScript utilise un <i>typage implicite</i>.<br><br>
+		Comme en Python, on ne déclare pas le type des variables. Les variables sont déclarées avec <code>let</code>, ou avec <code>const</code> si leur valeur ne change pas.
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		let maVariable = 3;    // Déclare une variable, sa valeur pourra changer
+		const maVariable = 3;  // Déclare une constante, changer sa valeur provoquera une erreur
+	</code></pre>		
+	<br>
+	<p class="info">
+		Selon la norme ECMAScript, toutes les instructions en JavaScript doivent se terminer par un point-virgule, mais l’interpréteur acceptera si vous ne les mettez pas. Prenez l'habitude de respecter le standard et de toujours les utiliser.
+	</p>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les variables</h4>
+	<br>
+	<p>
+		Il est possible de déclarer des variable avec <code>var</code> ou sans utiliser de préfixe. Cela déclare une variable globale au contexte courant. <br><br>
+		On ne l'utilise plus en pratique, cela créé des confusions.
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		// Ces deux lignes font la même chose. maVariable sera globale à la fonction courante
+		maVariable = 3;
+		var maVariable = 3;
+		// Ces syntaxes sont désuètes, à ne pas utiliser 
+	</code></pre>		
+	<br>
+	<aside class="notes">
+Il est aussi recommandé de terminer toutes les lignes par un point-virgule car cela permet d'éviter des erreurs subtiles de syntaxe.
+
+Par exemple, le code suivant : 
+&lt;pre&gt;
+const a = 1 + 2
+("a" + "B").toLowerCase()
+&lt;/pre&gt;
+Retournera l'erreur : &lt;i&gt;Uncaught TypeError: 2 is not a function&lt;/i&gt;
+
+Car JavaScript interprète un retour à la ligne comme une fin d'instruction &lt;b&gt;uniquement&lt;/b&gt; quand cela est la seule solution syntaxique. &lt;br&gt;
+Or la ligne &lt;i&gt;&lt;samp&gt;const a = 1 + 2("a" + "B").toLowerCase()&lt;/samp&gt;&lt;/i&gt; est syntaxiquement valide, et donc interprétée comme telle. Mais elle retourne une erreur lors de l'execution car "2" suivit de parenthèses ne veut rien dire. Avec des points-virgules cette erreur ne serait pas arrivée.
+	</aside>
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les types</h4>
+	<br>
+	<p>
+		Bien que le typage sont implicite, toutes les variables en JavaScript possèdent un type.<br>
+		Il existe 7 types de base.
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		const maVariable = "JavaScript";    // Chaîne de caractères
+		const maVariable = 3.14;            // Nombre réel
+		const maVariable = true;            // Booléen
+		const maVariable = null;            // null, indique l'absence d'un objet
+		const maVariable = undefined;       // undefined, indique "pas de valeur", "non déclaré"
+		const maVariable = BigInt(3);       // BigInt, entier sans limites
+		const maVariable = Symbol("foo");   // Symbol, pas utile dans ce cours
+	</code></pre>	
+	<div class="fragment fade-in">
+		<p>
+			L'instruction <code>typeof</code> retourne le type de la variable sous forme de chaîne de caractères
+		</p>
+		<pre><code data-trim data-noescape class="language-javascript">
+			const maVariable = false;
+			const typeDeMaVariable = typeof maVariable; // typeDeMaVariable vaut "boolean"
+		</code></pre>
+		<p>Il existe également d'autres types non basiques, qui sont des structures stockant des types basiques (tableaux, objets, etc).</p>
+	</div>	
+	
+	<aside class="notes">
+JavaScript est un language à &lt;b&gt;typage dynamique implicite&lt;/b&gt; &lt;br&gt;
+Implicite signifie que le language infère le type selon le contexte, on n'indique jamais explicitement le type d'une variable &lt;br&gt;
+Dynamique signifie que la vérification des types est faite lors de l'execution. Par opposition a des languages tels que le C/C++ où la vérification des types est faites lors de la compilation. &lt;br&gt;&lt;br&gt;
+
+Même si on ne déclare pas explicitement le type d'une variable, JavaScript assigne en interne un type à chaque variable.
+	</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>La console</h4>
+	<br>
+	<p>
+		Pour afficher un texte dans la console :
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		console.log("Bonjour"); // Affichera "Bonjour" dans la console
+		console.warn("Attention"); // Affichera un message d'avertissement
+		console.error("Erreur"); // Affichera un message d'erreur
+	</code></pre>	
+	<br>
+	<p class="info">
+		La fonction print() existe en JavaScript, mais il s'agit de la commande pour imprimer la page web !
+	</p>
+	<br><br>
+	<p>
+		La console des navigateurs web permet d'afficher plus que du texte. Il est possible d'afficher et d'explorer des variables, des objets, etc. Utilisez-la pour debugger votre code.
+	</p>
+	
+	<aside class="notes">
+A part les types de bases, tous les autres sont des "objects". Cela veut dire que tous les types de JavaScript suivent une logique similaire et peuvent facilement être affichés dans la console. La console des navigateur, quand un objet y est affiché, ajoute même une interface pour naviguer dans les propriétés de l'objet. Cela est extrêmement pratique pour debugger.
+	</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les opérations booléennes</h4>
+	<p>
+		Les comparaisons se font de manière classique :
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		console.log(3 &lt; 2);     // false
+		console.log(3 >= 2);    // true
+		console.log(3 == 2);    // false
+		console.log(3 != 2);    // false
+	</code></pre>	
+	<p>
+		Les opérateurs <code>===</code> et <code>!==</code> permettent de tester la valeur et le type :
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		console.log(2 == "2");    // true      car les valeurs sont identiques, peu importe le type
+		console.log(2 === "2");   // false     car les types sont différents
+		console.log(2 != "2");    // false
+		console.log(2 !== "2");   // true
+	</code></pre>	
+	<div class="fragment fade-in">
+		<p>Les opérateurs <code>&&</code> , <code>||</code> et <code>!</code> fonctionnent respectivement comme <code>and</code>, <code>or</code> et <code>not</code> en Python</p>
+		<pre><code data-trim data-noescape class="language-javascript">
+			console.log( !(2 != "2" || 3 < 2) && 0 < 4); // true 
+		</code></pre>
+	</div>
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les opérations mathématiques</h4>
+	<p>
+		En JavaScript on retrouve les opérations des base : addition <code>+</code>, soustraction <code>-</code>, multiplication <code>*</code>, division <code>/</code>, modulo <code>%</code> (reste d'une division entière).
+	</p>
+	<p>
+		Il existe également les opérateurs d'assignement : <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>   <br>
+<code>x += y</code> est équivalent à <code>x = x + y</code>, idem pour les autres opérateurs   
+	</p>
+	<p>
+		Il existe aussi les opérateurs d'incrémentation <code>++</code> et de décrémentation <code>--</code>   <br>
+<code>x++</code> est équivalent à <code>x = x + 1</code> et <code>x--</code> est équivalent à <code>x = x - 1</code>  
+	<br>
+	<p>
+		L'opérateur <code>+</code> sert de concaténation pour les chaînes de caractères.   
+<code>"Hello " + "World"</code> donne <code>"Hello World"</code>
+	</p>
+<br>
+<p>
+	Pour tous les détails, voir <a href="https://www.w3schools.com/js/js_operators.asp">https://www.w3schools.com/js/js_operators.asp</a>
+</p>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les fonctions mathématiques</h4>
+	<p>
+		Toutes les fonctions de math avancées se font grâce à l'objet <code>Math</code>
+	</p>
+	<ul>
+		<li><code>Math.abs(x)</code> : valeur absolue</li>
+		<li><code>Math.log(x)</code>, <code>Math.exp(x)</code>: logarithme et exponentielle</li>
+		<li><code>Math.min(x, y, z, ...)</code>, <code>Math.max(x, y, z, ...)</code> : minimum et maximum de plusieurs valeurs</li>
+		<li><code>Math.random()</code> : nombre aléatoire dans l'intervalle <code>[0, 1[</code></li>
+		<li><code>Math.sqrt(x)</code>, <code>Math.pow(x, y)</code> : racine carrée et puissance</li>
+		<li><code>Math.round(x)</code>, <code>Math.floor(x)</code>, <code>Math.ceil(x)</code> : Arrondi resp. au plus proche, inférieur, supérieur</li>
+		<li><code>Math.PI</code> : π</li>
+	</ul>
+
+	<p>Référence complète : <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Math">https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Math</a></p>
+
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Coercition</h4>
+	<p>
+		Les opérateurs mathématiques peuvent être utilisés entre tout types, mais attention aux comportements surprenants ! <br>
+		L'addition est particulière.
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		console.log(3 + 5);       // 8        Addition standard
+		console.log("3" + "5");   // "35"     Concaténation de texte
+		console.log(3 + "5");     // "35"     Dès qu'un opérateur est un texte, c'est une concaténation
+		console.log(3 - 5);       // -2       Soustraction standard
+		console.log("3" - "5");   // -2       La soustraction converti automatique tout texte en nombre
+		console.log("3" - "A");   // NaN      Si un texte n'est pas convertible, retourne la valeur NaN
+		console.log("3" * "5");   // 15       Idem pour tous les autres opérateurs
+		console.log("3" * true);  // 3        true vaut 1, false vaut 0
+		console.log("3" - null);  // 3        null est converti en la valeur 0
+		console.log("3" - []);    // 3        Les tableau vides valent 0
+		console.log("3" - undefined); // NaN  Une opération avec "undefined" provoquera toujours un Nan
+	</code></pre>
+
+	<p>
+		Il existe beaucoup d'autres cas. On appelle cette "conversion automatique" entre types la <i>coercition</i>.
+
+		Retenez : Éviter au maximum les opérations entres types différents !
+	</p>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Cas particuliers</h4>
+	<p>Pas convaincu de ne pas mélanger les types ?</p>
+
+	<pre><code data-trim data-noescape class="language-javascript">
+		console.log(('b' + 'a' + + 'lancer' + 'a').toLowerCase()); // Qu'affiche ceci ?
+	</code></pre>
+	<pre class="fragment fade-in"><code data-trim data-noescape class="language-javascript">
+		console.log('b' + 'a' + (+ 'lancer') + 'a'); // 'a'++ n'est pas valide
+	</code></pre>
+	<pre class="fragment fade-in"><code data-trim data-noescape class="language-javascript">
+		console.log('b' + 'a' + NaN + 'a'); // 'lancer' est converti en nombre, invalide donc NaN
+	</code></pre>
+	<pre class="fragment fade-in"><code data-trim data-noescape class="language-javascript">
+		console.log('baNaNa'); // NaN est converti en texte via l'addition
+	</code></pre>
+	<pre class="fragment fade-in"><code data-trim data-noescape class="language-javascript">
+		console.log('baNaNa'.toLowerCase()); // Met le texte en minuscules
+	</code></pre>
+	<pre class="fragment fade-in"><code data-trim data-noescape class="language-javascript">
+		console.log(('b' + 'a' + + 'lancer' + 'a').toLowerCase()); // Affichera "banana"
+	</code></pre>
+	<p class="fragment fade-in">Liste d'opérations WTF en JavaScript: <a href="https://github.com/denysdovhan/wtfjs">https://github.com/denysdovhan/wtfjs</a></p>
+
+<aside class="notes">
+	On entend beaucoup de critiques de JavaScript à cause de ces comportements bizarres.   
+	Pour nuancer un peu, il s'agit la majorité du temps de codes qui ne s'écrivent pas en pratique.
+	<br><br>
+	N'oubliez pas : gardez toujours votre code propre et clair. En faisant ça vous évitez ce genre de problèmes. 
+</aside>
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les conditions</h4>
+	<p>Les conditions s'écrivent de la manière suivante :</p>
+
+	<pre><code data-trim data-noescape class="language-javascript">
+		if(a &lt; b){
+			console.log("Do A");
+		}else if(a &lt; c){
+			console.log("Do B");
+		}else{
+			console.log("Do C");
+		}
+	</code></pre>
+	<p>Comme en Python, les blocs <code>else if</code> et <code>else</code> sont facultatifs</p>
+	<p>
+		Il est aussi possible de faire des <i>ternaires</i> avec la syntaxe <code>condition ? si_vrai : si_faux</code>
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		const a = 5;
+		const value = a > 3 ? "Plus grand" : "Plus petit ou égal";
+		console.log(value); // "Plus grand"
+	</code></pre>
+
+<aside class="notes">
+Détail concernant les conditions: JavaScript (comme Python, C/C++ et bien d'autres) évalue les conditions en court-circuit.
+Cela veut dire que JavaScript évalue les conditions élément par élément, et continue l'exécution dès qu'une décision peut être prise, même si toute l'expression n'a pas été évaluée.
+Exemple : 
+<pre>
+const a = [];
+
+// Cette ligne est valide, car comme "a.length &lt;= 0" est vrai, la condition s'execute sans évaluer la suite
+if(a.length &lt;= 0 || a[0][0] == 2){ console.log("Valide"); }
+
+// Cette ligne provoque une erreur, car "a[0]" est undefined et donc "a[0][0]" est invalide 
+if(a[0][0] == 2 || a.length &lt;= 0){ console.log("Erreur"); }
+</pre>
+</aside>
+
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les boucles — la boucle while</h4>
+	<p>Pour répéter des instructions plusieurs fois, il existe les boucles</p>
+
+	<pre><code data-trim data-noescape class="language-javascript">
+		let text = "";
+		while(text != "Bonjour"){
+			text = prompt("Dites 'Bonjour' !");  // prompt() Demande à l'utilisateur d'entrer un texte
+		}
+		console.log("Vous avez dit bonjour !");
+	</code></pre>
+	<p>
+		La boucle <code>while</code> répète son contenu tant que la condition est vraie.
+
+		La boucle <code>while</code> est utile quand <i>on ne connaît pas le nombre de répétitions à faire</i>.
+
+		Attention à <i>toujours</i> vous assurer que la boucle se terminera, sinon c'est une boucle infinie
+	</p>
+	<div class="info">
+		L'évaluation de la condition est faite au début de chaque itération
+	</div>
+
+	<aside class="notes">
+		Les boucles infinie sont particulièrement dangereuses car elles bloquent complètement la page, et il n'y a pas d'autres choix que de recharger la page. <br><br>
+
+		S'il n'est pas évident que la boucle s'arrêtera quoi qu'il arrive, pensez à mettre une condition d'arrêt, ou utiliser une boucle <i>for</i> à la place.
+	</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les boucles — la boucle for</h4>
+	<p>La boucle <code>for</code> est une autre manière de répéter des instructions</p>
+
+	<pre><code data-trim data-noescape class="language-javascript">
+		for(let i=0; i&lt;10; i++){
+			console.log(i); // 0 1 2 3 4 5 6 7 8 9 
+		}
+	</code></pre>
+	<p>
+		La boucle for(initialisateur ; condition ; iteration ) :
+		<ul>
+			<li>Exécute <code>initialisateur</code> avant d'entrer dans la boucle</li>
+			<li>Exécute <code>iteration</code> après chaque tour de boucle</li>
+			<li>S'exécute tant que <code>condition</code> est vraie</li>
+		</ul>
+	</p>
+	<p>
+		Ce type de boucle est utile quand <i>on connait le nombre de répétitions à faire</i>.<br>
+		Elle permet d'éviter des erreurs qui créent des bouclent infinies, car il est plus simple de voir que la boucle s'arrêtera dans tous les cas.
+
+	</p>
+
+<aside class="notes">
+Toute boucle <i>for</i> peut être écrite sous forme de boucle <i>while</i> et inversement. Choisir l'une ou l'autre dépend du contexte. On préférera le type de boucle qui permet d'exprimer le plus simplement la logique du code.
+</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les boucles — break & continue</h4>
+	<p>Dans une boucle, l'instruction <code>break</code> sort immédiatement de la boucle, sans condition.</p>
+
+	<pre><code data-trim data-noescape class="language-javascript">
+		const a = [/*...*/];
+		for(let i=0; i&lt;a.length; i++){
+			if (a[i] == 0) {          // Si a[i] vaut zéro, sort de la boucle
+				break;
+			}
+			console.log(`${1/a[i]}`); // Affichera l'inverse des éléments du tableau, jusqu'au premier zéro
+		}
+	</code></pre>
+
+	<p>Dans une boucle, l'instruction <code>continue</code> passe immédiatement à l'itération suivante.</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		const a = [/*...*/];
+		for(let i=0; i&lt;a.length; i++){
+			if (a[i] == 0) {          // Si a[i] vaut zéro, passe à l'itération suivante
+				continue;
+			}
+			console.log(`${1/a[i]}`); // Affichera l'inverse des éléments du tableau, sauf ceux valant zéro
+		}
+	</code></pre>
+
+	<aside class="notes">
+Les instructions <i>break</i> et <i>continue</i> affectent toujours la boucle courante (la boucle la plus intérieure dans le cas de boucle imbriquées).
+<br><br>
+Toutes les boucles utilisant <i>break</i> et <i>continue</i> peuvent se réécrire sans ces mots clés. <br>
+Comme pour les choix entre <i>while</i> et <i>for</i>, il faut préférer l'option qui produit le code le plus facilement compréhensible.
+</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les tableaux</h4>
+	<p>Les tableaux sont l'équivalent des listes en Python</p>
+
+	<pre><code data-trim data-noescape class="language-javascript">
+		const a = [];                           // Tableau vide
+		const b = [1, 2, 3];                    // Tableau de nombres
+		const c = [1, "a", null, 12.4, [1,2] ]; // Les tableaux peuvent contenir un mélange de types
+		console.log(c[1]);                      // Accès aux éléments : affiche "a".
+		c[58] = true;                           // On peut assigner n'importe quel élément d'un tableau. 
+												                    // Tous les éléments non assignés valent 'undefined'
+
+		b.push(5);                              // "push" ajoute un élément, b vaut alors [ 1, 2, 3, 5 ] 
+		b.pop();                                // "pop" supprime et renvoie le dernier élément
+		                                        // b contient alors  [1, 2, 3]
+
+		console.log(b.length);                  // Affiche 3. "length" retourne la taille du tableau
+
+		const d = [[1,2,3], [4,5,6], [7,8,9]];  // Il est possible d'avoir des tableaux de tableaux
+		console.log(d[1][2]);                   // Affiche 6
+	</code></pre>
+	<p>La numérotation des tableaux commence toujours à 0. <code>tab[3]</code> affichera donc le 4eme élément de tab.</p>
+	<p>Techniquement, en JavaScript, les tableaux sont des objets. <code>typeof []</code> retourne <code>"object"</code>
+</p>
+
+<aside class="notes">
+En incluant des tableaux dans des tableaux, il est possible de créer des tableaux avec n'importe quelle dimension.
+Par exemple 
+<pre>
+const m = [
+    [ [1,2],  [3, 4]  ],
+    [ [5,6],  [7, 8]  ],
+    [ [9,10], [11,12] ]
+];
+</pre>
+est un tableau à 3 dimensions auquel on accédera, par exemple, par <i>m[2][1][0]</i>.
+</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les fonctions des tableaux</h4>
+
+	<ul>
+		<li>Taille d'un tableau : <code>array.length</code></li>
+		<li>Ajouter un élément à la fin: <code>array.push(2)</code></li>
+		<li>Retirer le dernier élément : <code>array.pop()</code>. Renvoi l'élément retiré</li>
+		<li>Trier le tableau : <code>array.sort()</code> Trie le tableau et le renvoie</li>
+		<li>Inverser l'ordre des éléments : <code>array.reverse()</code>. Inverse l'ordre des éléments et renvoie le tableau</li>
+		<li>Appartenance : <code>array.includes('value')</code>. Retourne 'true' si le tableau contient 'value', 'false' sinon</li>
+	</ul>
+	<br>
+	<p>
+		Et bien d'autres : <a href="https://www.w3schools.com/js/js_array_methods.asp">https://www.w3schools.com/js/js_array_methods.asp</a>
+	</p>
+</p>
+
+<aside class="notes">
+En incluant des tableaux dans des tableaux, il est possible de créer des tableaux avec n'importe quelle dimension.
+Par exemple 
+<pre>
+const m = [
+    [ [1,2],  [3, 4]  ],
+    [ [5,6],  [7, 8]  ],
+    [ [9,10], [11,12] ]
+];
+</pre>
+est un tableau à 3 dimensions auquel on accédera, par exemple, par <i>m[2][1][0]</i>.
+</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les objets</h4>
+
+	<p>Un objet en JavaScript est équivalent à un dictionnaire en Python</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		const object = {
+			key1 : 3,
+			key2 : "Value",
+			key3 : {
+				subkey1 : true,
+				subkey2 : 5
+			},
+			key4 : [4,5,6]
+		};
+	</code></pre>
+
+	<p>Un objet est un ensemble <i>clés</i> possédant chacune une <i>valeur</i></p>
+	<p>On accède à une valeur à l'aide de la clé, soit à la manière d'un tableau soit avec un point :</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		console.log(object['key2']); // "Value"
+		console.log(object.key2); // "Value"
+	</code></pre>
+</p>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les objets</h4>
+
+	<p>Il est possible de créer une clé directement en l'assignant </p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		object['newkey'] = "newValue";
+		object.otherNewKey = "OtherNewValue";
+	</code></pre>
+
+	<p>Il est possible de supprimer une clé avec l'instruction <code>delete</code></p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		delete object['newkey'];
+		delete object.otherNewKey;
+	</code></pre>
+</p>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Traverser des tableaux et des objets</h4>
+
+	<p>Il existe la boucle <code>for(... of ...){}</code> pour itérer dans des tableaux :</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		const table = ["a", "c", "e", "g"];
+		for(const value of table){
+			console.log(value) // a c e g
+		}
+	</code></pre>
+
+	<div class="fragment fade-in">
+		<p>Il existe la boucle <code>for(... in ...){}</code> pour itérer dans des objets :</p>
+		<pre><code data-trim data-noescape class="language-javascript">
+			const obj = {
+				k1 : "v1",
+				k2 : 3,
+				k3 : true
+			};
+			for(const key in obj){
+				console.log(key + " : " + obj[key]); // k1 : v1    k2 : 3    k3 : true
+			}
+		</code></pre>
+	</div>
+
+	
+	<div class="info fragment fade-in">
+		Modifier les itérateurs "value" ou "key" (s'ils ne sont pas const) ne changera pas l'objet itéré.
+	</div>
+
+	<aside class="notes">
+		A noter que dans ces deux types de boucles, l'itérateur peut être déclarer avec `const` (`const value` et `const key`). Cela est possible car ces boucles créent une nouvelle variable à chaque itération. Le `const` assure ici que la valeur n'est pas modifiée durant une itération.
+	</aside>
+</p>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>L'immuabilité</h4>
+
+	<p>En JavaScript, il existe une différence fondamentale entre les types de base et les objets. <br><br> Qu'affiche ce code ?</p>
+
+	<pre><code data-trim data-noescape class="language-javascript">
+		let a = 5;
+		let b = a;
+
+		b = 10;
+
+		console.log(a);
+		console.log(b);
+	</code></pre>
+
+	<p class="fragment fade-in">
+		Ce code affichera : <br>
+		5 <br>
+		10 <br>
+		Rien de très surprenant
+	</p>
+
+<aside class="notes">
+
+Voici un exemple simple, rien de surprenant, mais il est intéressant d'examiner en détail ce que JavaScript fait lors de l'execution de ces lignes.
+</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>L'immuabilité</h4>
+	<br>
+
+	<img src="assets/immutable1.svg">
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>L'immuabilité</h4>
+	<br>
+
+	<img src="assets/immutable2.svg">
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>L'immuabilité</h4>
+	<br>
+
+	<img src="assets/immutable3.svg">
+
+	<p>
+		En JavaScript les types de base sont <i>immuables</i>. Un assignment créera toujours une copie.
+	</p>
+
+	<aside class="notes">
+
+Les types de base sont des variables qui *ne changent jamais de valeur*. On dit qu'elles sont immuables. Lors d'un assignment, JavaScript va copier la valeur dans un nouvel espace mémoire, indépendant du premier. Ainsi, modifier la variable `b`dans l'exemple précédent ne modifie pas `a`, car il s'agit de deux variables séparées.
+
+En réalité, si vous assignez une nouvelle valeur à `a`, par exemple avec le code :
+<pre>
+let a = 5;
+a = 10;
+</pre>
+La première ligne assignera à `a` une valeur 5 stockée en mémoire, puis la seconde ligne créera un autre espace mémoire et assignera ce dernier à `a`. La valeur d'origine `5`ne sera pas modifiée.
+On peut le constater si `a`est une chaîne de caractères : 
+<pre>
+let a = "Bonjour";
+a[0] = "A";
+</pre>
+Faire un `console.log(a)` affichera "Bonjour" et non "Aonjour", même si on a assigné "A" au premier caractère. Cet assignment n'a eu aucun effet car `a` est d'un type de base et donc immuable.
+</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>L'immuabilité</h4>
+
+	<p>En JavaScript, il existe une différence fondamentale entre les types de base et les objets. <br><br> Qu'affiche ce code ?</p>
+
+	<pre><code data-trim data-noescape class="language-javascript">
+		let a = [1, 2, 3];
+		let b = a;
+
+		b[1] = 10;
+
+		console.log(a);
+		console.log(b);
+	</code></pre>
+
+	<p class="fragment fade-in">
+		Ce code affichera : <br>
+		[1, 10, 3] <br>
+		[1, 10, 3] <br>
+	</p>
+
+<aside class="notes">
+Ici on remarque que modifier `b` modifie également `a`. Le comportement est différent que celui du cas précédent, pourquoi?
+</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>L'immuabilité</h4>
+	<br>
+
+	<img src="assets/immutable4.svg">
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>L'immuabilité</h4>
+	<br>
+
+	<img src="assets/immutable5.svg">
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>L'immuabilité</h4>
+	<br>
+
+	<img src="assets/immutable6.svg">
+
+	<p>
+		En JavaScript les types non basiques sont <i>mutables</i>. Un assignment créera une référence vers l'objet.
+	</p>
+
+	<aside class="notes">
+
+		Contrairement aux types de base, quand on assigne un objet, celui-ci n'est pas copié. La variable assignée pointera vers le même espace mémoire que la variable originale. Ainsi, changer l'une changera implicitement l'autre aussi.
+
+Les objets sont *mutable*, il est possible de les changer directement sans créer de copie. C'est bien le comportement attendu : 
+<pre>
+let a = [1,2,3];
+a[0] = 4;
+</pre>
+Dans ce cas un `console.log(a)` affichera bien `[4,2,3]`, car le tableau a été modifié.
+
+Il devient clair pourquoi un code comme celui-ci est valide : 
+<pre>
+const a = [1,2,3];
+a[0] = 10;
+</pre>
+Bien que `a` soit `const`, il est autorisé de modifier un élément du tableau, car `a` est toujours assigné au même objet. C'est l'objet lui-même que l'on change avec la seconde instruction. Le mot clé `const` ne garanti donc *pas* que l'objet assigné à une variable ne changera pas, il garanti que la variable ne pourra pas être assignée à autre chose.
+
+</aside>
+
+
+
+
+
