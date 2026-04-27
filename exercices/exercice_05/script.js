@@ -32,9 +32,7 @@ const users = [
 
 const isAdult = {
 
-  return True
-
-
+  return 
 
 } // TODO
 const isActive = {} // TODO
