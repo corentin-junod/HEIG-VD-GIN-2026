@@ -30,7 +30,13 @@ const users = [
 
 // Partie 1 
 
-const isAdult = {} // TODO
+const isAdult = {
+
+  return True
+
+
+
+} // TODO
 const isActive = {} // TODO
 const hasHobby = {} // TODO
 
