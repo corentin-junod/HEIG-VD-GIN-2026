@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercice 05</title>
+        <meta charset="UTF-8">
+        <style>
+            li{
+                margin:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Exercice 05</h1>
+        <p>En complétant les fichiers index.html et script.js :</p>
+
+        <p>On possède une liste de personnes dans le fichier.js</p>
+
+        <p>Partie 1 :</p>
+        <p>Écrivez les fonctions suivantes, qui seront toutes stockées dans des constantes :</p>
+        <ol>
+            <li><i>isAdult</i>, qui retourne <i>true</i> si une personne passée en paramètre est adulte, sinon <i>false</i></li>
+            <li><i>isActive</i>, qui retourne <i>true</i> si une personne passée en paramètre est active, sinon <i>false</i></li>
+            <li><i>hasHobby</i>, prenant deux paramètres, qui retourne <i>true</i> si une personne passée en paramètre possède le hobby passé en paramètre, sinon <i>false</i></li>
+        </ol>
+        <br>
+
+        <p>Partie 2</p>
+        <p>A l'aide des fonctions écrites dans la partie 1, et de la méthode <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">filter</a> des tableaux, filtrez le tableau <i>users</i> pour en extraire : </p>
+        <ol>
+            <li>Les adultes</li>
+            <li>Les enfants</li>
+            <li>Les adultes qui sont actifs</li>
+        </ol>
+        <br>
+
+        <p>Partie 3</p>
+        <p>Complétez pour que </p>
+        <ol>
+            <li>nbAdmins contienne le nombre de personnes qui sont "admin"</li>
+            <li>toText soit une fonction qui, prenant une personne en paramètre, retourne un text de la forme "Alice (alice@example.com), 28 ans, possède 3 hobbys"</li>
+            <li>Utilisez la méthode <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/map">map</a> pour produire la liste de tous les textes à l'aide de <i>toText</i></li>
+        </ol>
+        <br>
+
+        <p>Partie 4</p>
+        <p>Complétez pour que</p>
+        <ol>
+            <li><i>countFilter</i> soit une fonction prenant en paramètre un prédicat (un test). Cette fonction doit <i>retourner une nouvelle fonction</i> qui filtre un tableau selon le prédicat et retourne la taille du résultat</li>
+            <i>Utilisez <i>countFilter</i> pour produire une fonction qui compte le nombre de personnes qui ont un score plus grand que 70</i>
+        </ol>
+
+        
+        <script src="script.js"></script>
+    </body>
+</html>

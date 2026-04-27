@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercice 07</title>
+        <style>
+            html{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            li{
+                margin:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Exercice 07 - Solutions</h1>
+        <p>En complétant les fichiers index.html et script.js :</p>
+
+        <p>Partie 1 :</p>
+        <ol>
+            <li><p>Créez une classe <i>Point</i>, décrivant un point dans un système de coordonnées et prenant en paramètres la coordonnée nord et la coordonnée sud du point</p></li>
+            <li>Ajoutez une méthode "toString" qui affiche la position de la manière : <pre>E <i>coord_est</i> / N <i>coord_nord</i></pre></li>
+        </ol>
+        <br>
+        <p>Résultat de la partie 1, pour tester le code : <span id="test_1"></span></p>
+
+        <hr>
+
+        <p>Partie 2 :</p>
+        <p>Ajoutez la méthode <i>dist</i> à la classe <i>Point</i>, qui prend en paramètre un deuxième <i>Point</i> et calcule la distance qui les sépare</p>
+        <br>
+        <p>Résultats de la partie 2 :</p>
+        <ul>
+            <li>Distance entre Yverdon et Lausanne : <span id="test_2_0"></span> m</li>
+            <li>Distance entre Lausanne et Genève : <span id="test_2_1"></span> m</li>
+            <li>Distance entre Sion et Neuchâtel : <span id="test_2_2"></span> m</li>
+            <li>Distance entre Lausanne et Lausanne : <span id="test_2_3"></span> m</li>
+        </ul>
+
+        <hr>
+
+        <p>Partie 3 : </p>
+        <p>Ajoutez la méthode <i>offset</i> à la classe <i>Point</i>, qui prends en paramètres un décalage en X et un décalage en Y, et qui retourne un nouveau <i>Point</i> dont la position et celle du point de base décalée</p>
+
+        <p>Résultat de la parte 3 : </p>
+        <p>Point d'origine : <span id="test_3_0"></span></p>
+        <p>Point décalé : <span id="test_3_1"></span></p>
+
+        <script src="script.js"></script>
+    </body>
+</html>

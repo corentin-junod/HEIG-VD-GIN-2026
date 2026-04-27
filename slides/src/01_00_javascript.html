@@ -830,8 +830,573 @@ a[0] = 10;
 Bien que `a` soit `const`, il est autorisé de modifier un élément du tableau, car `a` est toujours assigné au même objet. C'est l'objet lui-même que l'on change avec la seconde instruction. Le mot clé `const` ne garanti donc *pas* que l'objet assigné à une variable ne changera pas, il garanti que la variable ne pourra pas être assignée à autre chose.
 
 </aside>
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les fonctions</h4>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les fonctions</h4>
+
+	<p>Les fonctions se déclarent de la manière suivante</p>
+
+	<pre><code data-trim data-noescape class="language-javascript">
+		function add(a,b,c){    // Déclare la fonction "add", disponible dans le contexte courant
+			return a + b + c;
+		}
+		const result = add(4,6,8); // result = 18
+		console.log(typeof add); // Affiche "function"
+	</code></pre>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les fonctions</h4>
+
+	<p>En Javascript les fonctions sont des objets comme les autres, il est possible de les assigner à des variables :</p>
+
+	<pre><code data-trim data-noescape class="language-javascript">
+		// Déclare une fonction "foo" assignée à la variable "maFonction"
+		const maFonction = function foo(a, b) {
+			return a * b;
+		}
+		console.log(maFonction(3,4)) // Affiche 12
+		console.log(foo(3,4)) // ERREUR : foo n'est pas définit
+	</code></pre>
+
+	<aside class="notes">
+	Les fonctions en JavScript se déclarent avec une syntaxe similaire au C/C++. Dans le premier exemple on déclare une fonction "add" qui prends 3 paramètres. Le corps de la fonction retourne l'addition des trois paramètres.
+
+Comme dans beaucoup de languages, l'instruction "return" retourne la valeur indiquée juste après et met fin à l'execution de la fonction.
+
+En JavaScript les fonctions sont considérées comme des objets, qui peuvent donc être assignés à des variables. Il est possible de créer des tableaux de fonctions, des objets contenant des fonctions, etc.
+Quand une fonction est assignée à une variable, elle n'est pas disponible dans le contexte actuel. Elle est simplement "stockée" dans la variable
+	</aside>
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les fonctions</h4>
+	<p>
+		Stocker des fonctions dans des variables est très courant en JavaScript. Il existe une syntaxe alternative sans donner de nom à une fonction. Ces fonctions sont dites "anonymes".
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		const operation1 = function nom_inutile(a,b){ return 1 + a * b } // Syntaxe classique
+		const operation2 = function (a,b){ return 1 + a * b } // Fonction anonyme
+	</code></pre>
+	<div class="fragment fade-in">
+		<p>
+			Les fonctions anonymes sont très utilisées en JavaScript, il existe une notation alternative, plus légère.<br>
+			On les appelle "fonctions fléchées" (<i>arrow functions</i>)
+		</p>
+		<pre><code data-trim data-noescape class="language-javascript">
+			const operation3 = (a,b) => { return 1 + a * b;} // Syntaxe encore plus simple
+		</code></pre>
+	</div>
+	<div class="fragment fade-in">
+		<p>
+			Si la fonction n'est composée que d'un <code>return</code> (comme c'est le cas ici), il est même possible de l'enlever ainsi que les accolades.
+		</p>
+		<pre><code data-trim data-noescape class="language-javascript">
+			const operation4 = (a,b) => 1 + a * b; // Dans ce cas, on peut omettre les accolades et le return
+		</code></pre>
+		<p>
+			Toutes les notations de cette slide sont équivalentes, excepté certaines nuances qui sont hors du cadre de ce cours.
+		</p>
+	</div>
+	<aside class="notes">
+		On le verra plus loins, mais les fonctions et leur gestion est au coeur du JavaScript. Il est extrêmement commun d'avoir des fonctions dans des objets, ou en tant que paramètres d'autres fonctions, etc.
+	</aside>
+</section>
 
 
 
 
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les fonctions</h4>
+	<p>
+		Exemple où une fonction est passée en paramètre d'une fonction
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		function apply_to_table(table, func){  // Le paramètre func est une fonction
+			
+			for(let i=0; i &lt; table.length; i++){ // On itère pour chaque élément du tableau
+				table[i] = func(table[i]);         // Appel de la fonction en paramètre
+			}
 
+			return table;
+		}
+
+		const numbers = [2, 4, 6];
+		const numbers_applied = apply_to_table(numbers, (x) => 3*x+1);
+		console.log(numbers_applied); // Affiche [7, 13, 19]
+	</code></pre>
+	<aside class="notes">
+		Cet exemple illustre la puissance des fonctions en JavaScript : elles peuvent être passées en tant que valeur n'importe où.
+		Du point de vue de JavaScript, les fonctions sont des objets, qui ont la particularité de contenir du code pouvant être executé.
+	</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les fonctions</h4>
+	<p>
+		Les fonctions acceptent des paramètres par défaut
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		function add(a, b, c=0, d=0){
+			return a + b + c + d;
+		}
+
+		console.log(add(2,3));      // Affiche 5
+		console.log(add(2,3,4));    // Affiche 9
+		console.log(add(2,3,4,5));  // Affiche 14
+	</code></pre>
+	<p>
+		Les paramètres par défaut doivent toujours se trouver en dernière position <br><code>function add(a=0, b){}</code><br> est invalide
+	</p>
+	<aside class="notes">
+		Cet exemple illustre la puissance des fonctions en JavaScript : elles peuvent être passées en tant que valeur n'importe où.
+		Du point de vue de JavaScript, les fonctions sont des objets, qui ont la particularité de contenir du code pouvant être executé.
+	</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Passage par valeur ou passage par référence</h4>
+	<p>
+		En JavaScript, les types de base (immuables) sont toujours passés <b>par valeur</b> aux fonctions. <br>
+		Leur valeur est copiée lors de l'appel à la fonction. <br>
+		Modifier un tel paramètre dans la fonction n'aura pas d'effet en dehors.
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		function modify_number(num){ // Type de base en paramètre, il sera dupliqué durant l'exécution
+			num = 10;                  // Cette assignation modifie la copie locale dans la fonction
+			return num;
+		}
+
+		const num_1 = 1;
+		const num_2 = modify_number(num_1);
+		console.log(num_1);     // Affiche 1  : La valeur de base n'a pas été modifiée
+		console.log(num_2);     // Affiche 10 : Il s'agit de la valeur renvoyée par la fonction
+	</code></pre>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Passage par valeur ou passage par référence</h4>
+	<p>
+		Tous les autres types (tableaux, objets, fonctions, ets) sont passés <b>par référence</b>. <br>
+		L'élément passé en paramètre n'est pas copié. Une référence vers cet élément est passé à la fonction. <br>
+		Modifier un tel paramètre dans la fonction aura un effet en dehors de la fonction. On appelle cela un <b>un effet de bord</b>.
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		function modify_table(table){ // Objet en paramètre, ce sera une référence
+			table[0] = 10;              // Cette assignation va modifier le tableau original
+			return table;
+		}
+
+		const table_1 = [1,2,3];
+		const table_2 = modify_table(table_1);
+		console.log(table_1);   // Retourne [10, 2, 3] : table_1 a été modifié par la fonction
+		console.log(table_2);   // Retourne [10, 2, 3] : il s'agit du même tableau que table_1
+
+		// A cet endroit, table_1 et table_2 référencent le même tableau.
+		// Modifier l'un modifiera aussi l'autre
+	</code></pre>
+	<aside class="notes">
+		Quand une fonction est appelée, au moment d'assigner la valeur à ses paramètres, elle se comporte comme l'opérateur `=`.
+		C'est-à-dire : <br>
+		- Les types de base sont immuable, et seront donc dupliqués
+		- Les objets (types composés) sont mutables, et la fonction s’exécutera *sur le même objet que passé en paramètre*
+
+		La fonction *modify_number* prend un nombre en paramètre, et lui assigne 10. Comme il s'agit d'un nombre, il sera copié au moment d'executer la fonction, cela ne modifiera pas le nombre d'origine, et la fonction retournera toujours 10.
+
+		La fonction *modify_table*, au contraire, prend un tableau en paramètre. Le tableau sur lequel va agir la fonction sera le tableau passé en paramètre : il n'y a pas de copie. La ligne `table[1] = 10` va donc modifier le tableau d'origine.
+		De plus, la ligne `return table` va renvoyer le même tableau que passé en paramètre.
+
+		Les variables `table_1` et `table_2` vont donc référencer le même tableau, et tout changement de l'une sera visible dans l'autre.
+		<br>
+		Les fonctions qui modifient leur objets d'entrée sans créer de copie sont souvent appelée *in-place*.
+	</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Le DOM</h4>
+	<p>
+		Comment lire et écrire le contenu de notre document HTML avec du JavaScript ? 
+		Grâce au Document Object Model (DOM) !
+	</p>
+	<p>
+		Le DOM est l'interface permettant d'accéder à la page web. Il se caractérise par l'ajout de deux objets, accessibles partout dans le code : `document` et `window`. <br>
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		// Retourne l'élément qui porte l'id "monId"
+		const e1 = document.getElementById('monId');
+		// Retourne un tableau avec les éléments de classe "maClasse"
+		const e2 = document.getElementsByClassName('maClasse'); 
+		// Retourne le premier élément correspondant au sélecteur CSS 
+		const e3 = document.querySelector('p .large');          
+	</code></pre>
+	<aside class="notes">
+		Jusqu'ici, nous n'avons utilisé que la console pour interagir avec JavaScript. Évidemment cela n'est pas très pratique et la raison principale d'exécuter du JavaScript dans un navigateur est de pouvoir interagir avec la page web et son contenu.
+		<br><br>
+
+		Le DOM est l'interface que met à disposition le navigateur pour lire / écrire du contenu sur la page. <br>
+		L'objet `document` offre des fonctions pour interagir avec la page web elle-même et son contenu. <br>
+		L'objet `window` offre des fonctions pour interagir avec la fenêtre du navigateur. Par exemple, récupérer la résolution de la fenêtre.
+	</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Le DOM</h4>
+	<p>
+		Une fois un élément HTML récupéré, toutes ses propriétés sont modifiables
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		// Sélectionne le premier paragraphe de la page
+		const elem = document.querySelector('p');
+		// Assigne un nouveau texte au paragraphe
+		elem.textContent = "Nouveau contenu du paragraphe"; 
+		// Assigne une nouvelle taille de police
+		elem.style.fontSize = "20pt";                        
+	</code></pre>
+	<p>
+		Référence du DOM et ses fonctions : <a href="https://www.w3schools.com/js/js_htmldom.asp">https://www.w3schools.com/js/js_htmldom.asp</a>
+	</p>
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Le DOM</h4>
+	<p>
+		Il est aussi possible d'attacher des événements aux éléments 
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		// Récupère l'élément à modifier
+		const elem = document.getElementById('MyId');                
+		// Au clic, modifie le texte de l'élément à "Clic!"
+		elem.addEventListener("click", () => elem.textContent="Clic!"); 
+	</code></pre>
+	<br><br>
+	<pre><code data-trim data-noescape class="language-javascript">
+		// document.body retourne toujours la balise body de la page actuelle
+		// Quand la page est chargée ("load"), change le texte de l'élément info en "Loaded!"
+		document.body.addEventListener(
+			"load", 
+			() => document.getElementById('info').textContent="Loaded!"
+		);
+	</code></pre>
+	<aside class="notes">
+		La fonction `addEventListener` permet d'attacher une action à un événement.<br>
+		Le premier paramètre est une chaîne de caractère qui décrit l'événement. <br>
+		Le second paramètre est l'action à executer quand l'événement survient. Cette action est une fonction, c'est un excellent exemple d'une fonction qui prend en paramètre une autre fonction à executer plus tard.
+	</aside>
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Le DOM - Les événements</h4>
+	<p>
+		Il est aussi possible de spécifier un événement directement dans la balise
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		&lt;!DOCTYPE html&gt;
+		&lt;html&gt;
+			&lt;head&gt;...&lt;/head&gt;
+			&lt;body onload="execute_on_load()"&gt;
+				&lt;button onclick="execute_on_click()"&gt;Button&lt;/button&gt;
+				&lt;script src="script.js"&gt;&lt;/script&gt;
+			&lt;/body&gt;
+		&lt;/html&gt;
+	</code></pre>
+	<pre><code data-trim data-noescape class="language-javascript">
+		function execute_on_load(){console.log("Loaded !");}
+		function execute_on_click(){console.log("Clicked !");}
+	</code></pre>
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Programmation orientée objet</h4>
+
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Programmation orientée objet</h4>
+
+	<p>
+		La programmation orientée objet est une manière de concevoir du code (appelé paradigme) dont le principe est de découper son code en objets. Un objet peut représenter un élément visible à l'écran, un concept concret ou abstrait, ou n'importe quelle "unité" qui possède une logique interne.
+	</p>
+	<p>
+		Un objet contient deux catégories d'éléments :
+		<ul>
+			<li>Ses variables internes (nommées attributs), qui définissent son état</li>
+			<li>Ses fonctions internes (nommées méthodes), qui définissent ses actions</li>
+		</ul>
+	</p>
+	<img src="assets/POO2.svg">
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Programmation orientée objet</h4>
+
+	<img src="assets/POO3.svg">
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Programmation orientée objet</h4>
+
+	<p>Exemple</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		const rectangle = {
+			height : 300,                                             // Attribut "height"
+			width : 200,                                              // Attribut "width"
+			area : function () { return this.height * this.width }    // Méthode "area"
+		}
+	</code></pre>
+	<p>
+		L'opérateur `this` permet d'obtenir l'objet actuel
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		rectangle.width         // Retourne 200
+		rectangle.area()        // Retourne 60000
+		rectangle.width = 5
+		rectangle.area()        // Retourne 1500
+	</code></pre>
+	<p class="fragment fade-in">
+		Pratique pour des objets simples, mais si on voulait créer plusieurs rectangles il nous faudrait une fonction qui génère des rectangles. Cela deviendrait vite complexe.
+	</p>
+	<aside class="notes">
+		On pourrait définir un objet avec le code suivant. Mais cela est peu pratique.
+		- Il faudrait déclarer chaque objet séparément, ou alors créer une fonction spécifique pour créer des rectangles
+		- Pour des objets plus complexes, la syntaxe devient rapidement lourde et difficile à lire
+	</aside>
+</section>
+
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Programmation orientée objet</h4>
+
+	<p>
+		Il existe une syntaxe spécialement conçue pour les objets. Une classe est la "description" d'un objet, permettant facilement d'instancier plusieurs objets par la suite.
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		class Rectangle{
+			constructor(width, height){ // Constructeur, appelé à la création d'un nouvel objet
+				this.width = width;
+				this.height = height;
+			}
+			area(){
+				return this.width * this.height;
+			}
+		}
+	</code></pre>
+	<p>
+		Avec le mot clé `new` il est possible d'instancier des classes facilement
+	</p>
+	<pre><code data-trim data-noescape class="language-javascript">
+		const rec1 = new Rectangle(20, 30);
+		const rec2 = new Rectangle(200, 300);
+		rec1.area(); // 600
+		rec2.area(); // 60000
+	</code></pre>
+	<aside class="notes">
+		En utilisant les classes en javascript, il est possible d'avoir une syntaxe facile à lire et permettant d'instancier facilement des objets.
+		La syntaxe utilise le mot clé "class" suivit du nom de la classe. Une classe est une description des propriétés d'un objet, une fois déclarée, une classe ne crée aucun objet. Il faudra utiliser le mot clé "new" pour instancier la classe en objet.
+		<br>
+		En résumé, une classe est la description d'un objet. Un objet est une instance d'une classe.
+		<br><br>
+		Une classe contient une méthode spéciale "constructor" qui s'exécute lors de la création de l'objet. C'est elle qui reçoit les paramètres passés lors de l'instruction "new".
+		Les autres méthodes se déclarent sans le mot clé "function", les unes après les autres dans la classe. Toutes les méthodes ont accès au "this" de l'objet courant.
+	</aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les modules</h4>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les modules</h4>
+    <p>
+        Il est bien de découper son code en plusieurs fichiers. 
+        Par exemple, on pourra définir la classe <code>Disk</code> dans son propre fichier, avec également une constante globale pour le cercle unitaire en (0;0).
+        <pre><code data-trim data-noescape class="language-javascript">
+            // Fichier Disk.js
+            class Disk{
+                constructor(x, y, radius){
+                    this.x = x;
+                    this.y = y;
+                    this.radius = radius;
+                }
+                area(){
+                    return Math.PI*this.radius*this.radius;
+                }
+            }
+
+            const UNIT_DISK = new Disk(0, 0, 1);
+        </code></pre>
+        Comment utiliser ce code dans un autre fichier ?
+    </p>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les modules</h4>
+    <p>
+        Il serait possible d'importer tous les fichiers dans le HTML principal, à l'aide de balises <code>&lt;script&gt;</code>, mais cela a plusieurs inconvénients, en particulier
+        <ol>
+            <li>Tout est importé globalement, généralement des conflits de nom. Ainsi, dans l'exemple précédent, il ne peut y avoir un autre objet ou variable se nommant <code>Disk</code>.</li>
+            <li>Si une librairie est composée de plusieurs fichiers, ils doivent tous être importés un par un. Cela devient encombrant avec des centaines de fichiers.</li>
+            <li>La gestion des dépendances est très manuelle, complexe, et sujette aux erreurs.</li>
+        </ol>
+        <br><br>
+        Il existe une solution à tout ces problèmes : <b>Les modules</b>
+    </p>
+    <aside class="notes">
+        Les modules fournissent aussi, comme on va le voir plus loin, une notion d'encapsulation.
+    </aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les modules</h4>
+    <p>
+        Un module est un code contenu dans un fichier qui s'exécute dans un contexte isolé. Tout ce qui n'est pas exporté d'un module ne sera pas visible depuis l'extérieur. <br>
+        Pour exporter un élément, on utilise le mot clé <code>export</code>.
+    </p>
+        <pre><code data-trim data-noescape class="language-javascript">
+            // Fichier Disk.js    
+            export class Disk{                            // Classe exportée
+                constructor(x, y, radius){
+                    this.x = x;
+                    this.y = y;
+                    this.radius = radius;
+                }
+                area(){
+                    return Math.PI*this.radius*this.radius;
+                }
+            }
+
+            export const UNIT_DISK_AREA = new Disk(0, 0, 1).area(); // Constante exportée
+            const UNIT_DISK_PERIMETER = 2*Math.PI;                  // Constante non exportée
+        </code></pre>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les modules</h4>
+    <p>Pour importer un élément d'un module, on utilisera le mot-clé <code>import</code></p>
+        <pre><code data-trim data-noescape class="language-javascript">
+            // Fichier main.js
+            import { Disk, UNIT_DISK_AREA } from "./Disk.js"
+
+            const myDisk = new Disk(2, 3, 1.5);
+
+            if(myDisk.area() > UNIT_DISK_AREA) {
+                console.log("myDisk plus grand que le cercle unité");
+            }
+
+            import { UNIT_DISK_PERIMETER } from "./Disk.js" // Erreur ! Car non exporté
+            
+        </code></pre>
+    <p>Les imports seront indiqués entre <code>{</code> et <code>}</code>, même si un seul élément est importé</p>
+    <p>On ne peut importer des éléments que dans un module. En utilisant ce principe tout notre code sera un ensemble de modules.</p>
+    <aside class="notes">
+        Il est courant de faire du re-export, c'est-à-dire d'importer des éléments dans un module et de les y exporter. Cela permet à un utilisateur de ne pas faire trop d'imports différents. Par exemple, si vous créez une librairie avec un module "Button.js" et un module "Slider.js", vous pouvez créer un module "Widget.js" qui importe puis réexporte Button et Slider. En utilisant votre librairie il suffira de faire "import {Button, Slider} from 'Widget.js'
+    </aside>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les modules</h4>
+    <p>Pour chaque module, il est possible d'indiquer un export par défaut</p>
+        <pre><code data-trim data-noescape class="language-javascript">
+            // Fichier Disk.js    
+            export default class Disk{ ... } // Export par défaut
+            export const UNIT_DISK = new Disk(0, 0, 1);
+        </code></pre>
+    <p>
+        L'export par défaut peut être importé en lui donnant n'importe quel nom, sans accolades.
+        JavaScript sait qu'un import sans accolades est forcément l'export par défaut du module.
+    </p>
+        <pre><code data-trim data-noescape class="language-javascript">
+            // Fichier main.js    
+            import Disk from "./Disk.js" // Valide
+            const disk = new Disk(1,2,3);
+        </code></pre>
+        <pre><code data-trim data-noescape class="language-javascript">
+            // Fichier main.js
+            import Cercle from "./Disk.js" // Également valide, ici Disk est appelé Cercle
+            const disk = new Cercle(1,2,3);
+        </code></pre>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les modules</h4>
+    <p>Il est possible de renommer un import avec le mot-clé <code>as</code>. Cela est particulièrement utile quand on importe deux éléments dont les noms sont les mêmes.</p>
+    <pre><code data-trim data-noescape class="language-javascript">
+        import { Disk as Cercle, UNIT_DISK as CERCLE_UNITE} from "./Disk.js"
+    </code></pre>
+    C'est typiquement le cas quand on utilise plusieurs librairies différentes dans un seul fichier
+    <pre><code data-trim data-noescape class="language-javascript">
+        import { Color as ColorLib1} from "./my/library1/Color.js"
+        import { Color as ColorLib2} from "./my/library2/Color.js"
+    </code></pre>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les modules</h4>
+    <p>Il est possible de mélanger les imports et les imports par défaut</p>
+    <pre><code data-trim data-noescape class="language-javascript">
+        // Importe l'import pas défaut sous le nom de "Cercle", 
+        // et l'import "UNIT_DISK" sous le nom de "CERCLE_UNITE"
+        import Cercle, {UNIT_DISK as CERCLE_UNITE} from "./Disk.js"
+    </code></pre>
+    <br>
+    <p class="warning">Attention à ne pas abuser du renommage. A utiliser seulement pour éviter des collisions de noms ou éviter des ambiguïtés, sinon la compréhension du code devient très difficile.</p>
+</section>
+
+<section>
+	<h3>JavaScript</h3>
+	<h4>Les modules</h4>
+    <p>Pour importer un module JavaScript dans du HTML, on utilise la balise <code>&lt;script&gt;</code> avec <code>type="module"</code></p>
+    <pre><code data-trim data-noescape class="language-javascript">
+        &lt;script type="module"&gt;
+            import Disk from "./Disk.js";
+            /* ... */
+        &lt;/script&gt;
+    </code></pre>
+    <p>Attention : l'isolation vaut toujours dans ce cas, et le contenu de la balise <code>script</code> sera isolé du reste du code</p>
+    <pre><code data-trim data-noescape class="language-javascript">
+        &lt;script&gt;
+            const value = 10;
+        &lt;/script&gt;
+        &lt;script type="module"&gt;
+            console.log(value); // value n'existe pas ici, affichera undefined
+        &lt;/script&gt;
+        &lt;script&gt;
+            console.log(value); // affichera 10
+        &lt;/script&gt;
+    </code></pre>
+</section>

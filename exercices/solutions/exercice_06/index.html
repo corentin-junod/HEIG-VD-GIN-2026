@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercice 06</title>
+        <style>
+            html{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            li{
+                margin:10px;
+            }
+            .info{
+                background-color: darksalmon;
+                border: 2px solid black;
+                border-radius: 10px;
+                padding:15px;
+            }
+            input[type=number]{
+                width:100px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Exercice 06 - Solutions</h1>
+        <p>En complétant les fichiers index.html et script.js :</p>
+
+        <p>Partie 1 :</p>
+        <p>Le slider ci-dessous est mis à la valeur 42, récupérez cette valeur en JavaScript et affichez-la dans la console</p>
+        <input id="slider_1" type="range" min="0", max="100" value="42">
+
+        <p>Partie 2 :</p>
+        <p>Faites en sorte que la valeur du slider ci-dessous soit affichée dans le texte dès que le slider est bougé</p>
+        <input id="slider_2" type="range" min="0", max="100"><input id="text_2" type="number">
+
+        <hr>
+        <p>Partie 3 :</p>
+        <p>Idem à la partie 1, mais désormais modifier la valeur du texte doit également modifier la position du slider</p>
+        <input id="slider_3" type="range" min="0", max="100"><input id="text_3" type="number">
+
+        <hr>
+        <p>Partie 4 :</p>
+        <p>Idem à la partie 3, mais désormais modifier la valeur du slider ou du texte doit définir la largeur de l'image à cette valeur</p>
+        <input id="slider_4" type="range" min="0", max="100"><input id="text_4" type="number"><br>
+        <img id="logo" src="https://raw.githubusercontent.com/Dolpic/HEIG-VD-GIN/refs/heads/main/slides/public/heig_vd.svg" style="width:100px;">
+
+        <script src="script.js"></script>
+    </body>
+</html>

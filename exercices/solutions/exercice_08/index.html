@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercice 08</title>
+        <meta charset="UTF-8">
+        <style>
+            html{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            li{
+                margin:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Exercice 08 - Solution</h1>
+        <div style="border:1px solid red;border-radius: 5px;padding:10px;">
+            Note : Cet exercice utilise les modules JavaScript. Pour que ceux-ci fonctionnent en local sur votre ordinateur, il vous faut un serveur web local.
+            Vous pouvez démarrer un serveur web local en ouvrant un terminal et en vous plaçant dans le dossier des exercices, puis en tapant la commande :
+            <code>python3 -m http.server</code> ou <code>python -m http.server</code>.<br>
+            Dans votre navigateur, allez ensuite à la page <code>127.0.0.1:8000</code>
+        </div>
+        <p>Créez les modules :</p>
+        <ul>
+            <li>Point.js</li>
+            <li>Polygon.js</li>
+        </ul>
+        <br><br>
+        <p>Point.js déclare une classe "Point", qui contient les attributs suivants :</p>
+        <ul>
+            <li>x, sa coordonnée X</li>
+            <li>y, sa coordonnée Y</li>
+        </ul>
+        <p>Et qui contient les méthodes suivantes :</p>
+        <ul>
+            <li>distanceTo, prenant en paramètre un autre point, et qui retourne la distance entre le point et cet autre point</li>
+            <li>translate, qui prend deux arguments, dx et dy, et qui déplace le point de dx selon l'axe X et de dy selon l'axe Y</li>
+        </ul>
+        <p>Le module Point.js déclare également une constante de type Point, nommée ORIGIN, qui retourne le point (0;0)</p>
+
+        <br><br>
+
+        <p>Polygon.js déclare une classe "Polygon", qui contient l'attribut "points", qui est un tableau de Point (classe décrite ci-dessus).</p>
+        <p>Ces points décrivent les sommets d'un polygone, dans l'ordre, et on suppose que le périmètre du polygone ne s'intersecte pas avec lui-même.</p>
+        <p>La classe Polygon contient les méthodes suivantes :</p>
+        <ul>
+            <li>addPoint, qui ajoute un sommet, de type Point à la suite des sommets du polygone</li>
+            <li>getArea, qui retourne l'aire du polygone. Vous pouvez utiliser la formule du lacet pour calculer cela (https://en.wikipedia.org/wiki/Shoelace_formula)</li>
+            <li>getPerimeter, qui retourne le périmètre du polygone</li>
+            <li>translate, qui prend les paramètres dx et dy, et déplace le polygone de dx en X et de dy en Y</li>
+            <li>getCenter, qui retourne le centre du polygone, définit comme la moyenne des abscisses et des ordonnées de ses sommets</li>
+        </ul>
+        <p>Le module Polygon.js déclare également les constantes :
+            <ul>ORIGIN_SQUARE, qui est le Polygon qui décrit un carré dont les sommets sont (0;0), (0;1), (1;1) et (1;0)</ul>
+            <ul>ORIGIN_TRIANGLE, qui est le Polygon qui décrit un triangle dont les sommets sont (0;0), (0;1) et (1;0)</ul>
+        </p>
+        <br><br>
+        <p>Le fichier mains.js contient des tests, servant aussi d'exemples d'utilisation de toutes les fonctions décrites ci-dessus. Ce fichier, en s'exécutant, ne doit retourner aucune erreur.</p>
+
+
+        <script src="main.js" type="module"></script>
+    </body>
+</html>
