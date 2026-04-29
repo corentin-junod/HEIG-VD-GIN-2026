@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercice 09</title>
+        <style>
+            html{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Exercice 09</h1>
+        <p>Cet exercice vous guide dans l'installation de Node.js et vous propose de créer votre première application avec OpenLayers</p>
+        <br>
+        <ol>
+            <li>Premièrement, téléchargez Node.js <a href="https://nodejs.org/en/download">ici</a></li>
+            <li>Téléchargez l'installateur, et laissez toutes les options par défaut</li>
+            <li>Une fois Node.js installé, ouvrez Visual Studio Code et ouvrez le dossier de cet exercice (menu Fichier, Ouvrir un dossier)</li>
+            <li>Ouvrez un terminal dans le dossier de cet exercice. Cela peut être fait depuis Visual Studio Code avec le menu "Terminal", puis "Nouveau terminal"</li>
+            <li>Dans le terminal, tapez les commandes indiquées <a href="https://openlayers.org/doc/quickstart.html">ici</a>
+                <ul>
+                    <li><code>npm create ol-app my-app</code> indique à Node.js de créer une application de base OpenLayers. Node.js créera un nouveau dossier <code>my-app</code> contenant le code minimal pour faire fonctionner OpenLayers</li>
+                    <li><code>cd my-app</code> indique de déplacer le terminal dans le dossier <code>my-app</code></li>
+                    <li><code>npm start</code> indique de démarrer l'application avec Vite. Vite va créer un serveur de développement exécutant l'application</li>
+                    <li>Vite affichera dans la console une ligne semblable à <code>Local: http://localhost:5173/</code>, il s'agit de l'adresse à taper dans votre navigateur pour lancer l'application</li>
+                </ul>
+            </li>
+            <li>En vous rendant à l'adresse indiquée par Vite, vous devriez voir une carte OpenStreetMap en plein écran</li>
+            <li>Le serveur de développement de Vite est très pratique. Vite actualisera automatique votre page web si vous modifier un des fichiers de l'application (fichier HTML ou JavaScript) </li>
+        </ol>
+    </body>
+</html>

@@ -1,0 +1,106 @@
+<section>
+	<h3>Node.js</h3>
+    <img src="https://nodejs.org/static/logos/nodejsLight.svg" width="400px">
+</section>
+
+<section>
+	<h3>Node.js</h3>
+    <p>Node.js est un environnement d'exécution JavaScript</p>
+    <p>De même que Python, il vous permet d'executer du JavaScript sur votre machine et d'en faire des applications</p>
+    <p>Node.js permet, entre autres, de faire</p>
+    <ul>
+        <li>Des serveurs web</li>
+        <li>Des applications web</li>
+        <li>Des applications desktop et en ligne de commande</li>
+        <li>Des scripts</li>
+        <li>etc.</li>
+    </ul>
+    <p>De même que Python possède son gestionnaire de paquets <i>pip</i>, Node.js possède <i>npm</i> (node packet manager)</p>
+    <aside class="notes">
+Node.js est donc une application qui interprète du JavaScript et le transforme en instructions pour votre machine. 
+
+Il existe certaines variations entre le JavaScript de Node et celui de votre navigateur. Par exemple Node ne possède pas de DOM, car le script ne s'execute pas sur le page web. Node vient également avec un ensemble de fonctions permettant d’interagir avec votre système (créer des fichiers, gérer des processus, etc), ce qui ne fait pas de sens pour une page web.
+
+Il existe d'autres environnements d'executions et d'autres gestionnaires de packets que Node et npm. Nous utilisons ceux-ci car ce sont les plus répandus et les plus standards. Les alternatives ont souvent des fonctions très similaires.
+    </aside>
+</section>
+
+<section>
+	<h3>Node.js</h3>
+    <h4>Quelques commandes de bases</h4>
+    <p>Dans le répertoire d'un projet Node.js, en utilisant la ligne de commandes : </p>
+    <ul>
+        <li><code>npm init</code> : Créé un nouveau projet Node.js partant de zéro </li>
+        <li><code>npm install monPackage</code> : Installe le packet monPackage, peut être abrégé <code>npm i monPackage</code></li>
+        <li><code>npm install</code> : Installe toutes les dépendances (packets) du projet, peut être abrégé <code>npm i</code></li>
+        <li><code>npm run maCommande</code> : Exécute la commande maCommande</li>
+        <li><code>npm -h</code> : Affiche l'aide des commandes</li>
+    </ul>
+    <p>
+        Contrairement à Python, par défaut, tous les packets sont installés dans le répertoire du projet courant. <br>
+        Chaque projet contient donc indépendamment tous ses packets, ils ne sont pas partagés entre projets.
+    </p>
+</section>
+
+<section>
+	<h3>Node.js</h3>
+    <h4>Structure d'un projet</h4>
+    <p>Un projet avec Node.js est notamment composé des fichiers / dossiers :</p>
+    <p><i>package.json</i> : Liste les informations principales concernant un projet</p>
+    <pre><code data-trim data-noescape class="language-javascript">
+        {
+            "name": "monProjet",    // Nom du projet
+            "type": "module",       // Son type, généralement un module
+            "scripts": {            // Liste des commandes (actions) disponibles pour le projet
+                "start": "vite",    // Exécuter "npm run start" va exécuter la commande "vite"
+                "build": "vite build"
+            },
+            // Liste des dépendances pour les projet, ajoutées au moment d'un "npm install librairie1"
+            "dependencies": { 
+                "librairie1": "^1.0.0",     
+                "librairie2": "^1.2.0",
+                "librairie3": "^2.3.0"
+            }
+        }
+    </code></pre>
+</section>
+
+<section>
+	<h3>Node.js</h3>
+    <h4>Structure d'un projet</h4>
+    <p>Un projet avec Node.js est notamment composé des fichiers / dossiers :</p>
+    <p><i>package-lock.json</i> : Liste les sous-dépendances (dépendances de dépendances). Est recréé lors d'un <code>npm install</code></p>
+    <p><i>node_modules</i> : Dossier contenant toutes les dépendances téléchargées <br>
+Il ne doit pas être ajouté à votre projet git, car il est souvent très lourd et recréé lors d'un <code>npm install</code></p>
+
+    <p>Pour installer et lancer une application Node.js, les instructions sont généralement : </p>
+
+ <pre><code data-trim data-noescape class="language-bash">
+        git clone https://url.vers/le/repository  // Clone le projet avec git
+        npm install             // Installe toutes les dépendances
+        npm run start           // Lance le script de démarrage (définit dans package.json)
+    </code></pre>
+</section>
+
+<section>
+	<h3>Vite</h3>
+    <img src="https://vite.dev/logo.svg" width="300px">
+</section>
+
+<section>
+	<h3>Vite</h3>
+    <p>Vite est un <i>bundler</i> fonctionnant avec Node.js (entre autres)</p>
+    <p>
+        Un bundler est une application spécifiquement faites pour simplifier le développement d'applications web.
+    </p>
+    <p>
+        Les avantages sont :
+    </p>
+    <ul>
+        <li><b>Gestion moderne des dépendances</b> : plus besoin d'avoir des fichiers JS inclus dans tous les sens au milieu du HTML. Les dépendances sont installées avec npm et inclues avec du JavaScript moderne</li>
+        <li><b>Résultat minimal</b> : Vite simplifie le code en n'incluant que les parties de code vraiment nécessaires et minimise le code</li>
+        <li><b>Support d'outils d'automation et d'integration continue</b> : mise en forme automatique, tests, script lors d'un commit, etc</li>
+        <li><b>Ajout facile d'autres technologies</b> : Vue, TypeScript, SCSS, Svelte, React, etc</li>
+    </ul>
+    <p>Ce bundler est tellement utilisé que certaines librairies en font leur moyen de diffusion principal. C'est le cas d'OpenLayers.</p>
+</section>

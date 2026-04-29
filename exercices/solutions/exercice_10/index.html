@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercice 09</title>
+        <style>
+            li{
+                margin:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Exercice 09</h1>
+        <p>Pour cet exercice, vous devez avoir installé Node.js et fait l'exercice 8</p>
+        <ol>
+            <li>Créez une application OpenLayers de base, comme dans l'exercice 8</li>
+            <li>L'office fédéral de topographie, swisstopo, met à disposition un serveur WMTS : <code>https://wmts.geo.admin.ch/EPSG/3857/1.0.0/WMTSCapabilities.xml?lang=fr</code> 
+                <br>
+                En vous inspirant de l'exemple officiel d'OpenLayers pour le WMTS : <a href="https://openlayers.org/en/latest/examples/wmts-layer-from-capabilities.html">https://openlayers.org/en/latest/examples/wmts-layer-from-capabilities.html</a>,
+                modifiez l'application de base pour remplacer la couche OpenStreetMap par la couche WMTS <code>ch.swisstopo.swisssurface3d-reliefschattierung-multidirektional</code> de swisstopo.
+            </li>
+            <li>Ajoutez également la couche <code>ch.swisstopo.swisstlm3d-strassen</code> du WMTS de swisstopo, par dessus la couche précédente</li>
+            <li>
+                Ajoutez un slider sur la page web (balise <code>input</code> de type <code>range</code>).<br>
+                Faites en sorte que le slider contrôle l'opacité de la couche des routes chargée au points précédent. <br>
+                Voici un exemple qui montre comment faire cela : <a href="https://openlayers.org/en/latest/examples/layer-opacity.html">https://openlayers.org/en/latest/examples/layer-opacity.html</a>
+            </li>
+        </ol>
+    </body>
+</html>
