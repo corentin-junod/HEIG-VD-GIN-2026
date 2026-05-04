@@ -274,19 +274,20 @@ register(proj4);
 <section>
 	<h3>OpenLayers</h3>
     <h4>La projection suisse</h4>
-    <pre><code data-trim data-noescape class="language-javascript" style="font-size: 170%;">
+    <pre><code data-trim data-noescape class="language-javascript" style="font-size: 160%;">
 
 import proj4 from "proj4";
-import "../assets/style.css";
 import { Projection } from "ol/proj";
-/* Et autre imports .... */
+import { register } from "ol/proj/proj4";
+/* Et autres imports .... */
 
 const extent = [2420000, 1030000, 2900000, 1360000];
 proj4.defs(
-    crs,
+    'EPSG:2056',
     "+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 +x_0=2600000" +
     " +y_0=1200000 +ellps=bessel +towgs84=674.374,15.056,405.346,0,0,0,0 +units=m +no_defs",
-);register(proj4);
+);
+register(proj4);
 const projection = new Projection({code: "EPSG:2056", extent: extent});
 
 new Map({
